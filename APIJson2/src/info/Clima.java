@@ -55,13 +55,14 @@ public class Clima {
 	
 	public String climaPorKeyLocation(String keyCiudad) {
 		String cadenaClima  = obtenerClima(keyCiudad);
+		System.out.println("probando");
 		if(cadenaClima != null) {
 			JsonParser jParser = new JsonParser();
 			JsonElement jElemento = jParser.parse(cadenaClima);
 			String ciudad="";
 			String provincia="";
 			String pais="";
-			// Siempre va a devolver 1 elemento por ser la KeyLocale única
+			// Siempre va a devolver 1 elemento por ser la KeyLocale ï¿½nica
 			
 			JsonObject objeto = jElemento.getAsJsonArray().get(0).getAsJsonObject();
 			String tiempo = objeto.get("WeatherText").getAsString();
@@ -77,8 +78,11 @@ public class Clima {
 			 provincia = jsonCiudad.getAsJsonObject("AdministrativeArea").get("LocalizedName").getAsString();
 			 pais = jsonCiudad.getAsJsonObject("Country").get("LocalizedName").getAsString();
 			}
-			return jsonCiudad==null?(tiempo +"\nTemperatura: " + temperatura + " º" + unidad 
-					+"\nSensación termica: " + sensacionTermica +" º" + unidad
+			System.out.println(tiempo  +"\nTemperatura: " +temperatura + " ï¿½" + unidad +"\nSensaciï¿½n termica: " + sensacionTermica +" ï¿½" + unidad
+					+"\nHumedad: " + humedad + "%"+"\nVientos: " + viento + " " + unidad_viento
+					+"\nNubosidad: " + nubosidad + "%");
+			return jsonCiudad==null?(tiempo +"\nTemperatura: " + temperatura + " ï¿½" + unidad 
+					+"\nSensaciï¿½n termica: " + sensacionTermica +" ï¿½" + unidad
 					+"\nHumedad: " + humedad + "%"
 					+"\nVientos: " + viento + " " + unidad_viento
 					+"\nNubosidad: " + nubosidad + "%"):
@@ -87,8 +91,8 @@ public class Clima {
 					+"Provincia: "+provincia+'\n'
 					+"Pais: " +pais +'\n'+
 					tiempo +
-					"\nTemperatura: " + temperatura + " º" + unidad 
-					+"\nSensación termica: " + sensacionTermica +" º" + unidad
+					"\nTemperatura: " + temperatura + " ï¿½" + unidad 
+					+"\nSensaciï¿½n termica: " + sensacionTermica +" ï¿½" + unidad
 					+"\nHumedad: " + humedad + "%"
 					+"\nVientos: " + viento + " " + unidad_viento
 					+"\nNubosidad: " + nubosidad + "%"
@@ -100,8 +104,8 @@ public class Clima {
 	
 	
 	
-	private String obtenerClima(String keyCiudad) {
-		String dirUrl = "http://dataservice.accuweather.com/currentconditions/v1/" + keyCiudad + "?apikey=" + KEY_API + Lenguaje.ESPAÑOL;
+	public String obtenerClima(String keyCiudad) {
+		String dirUrl = "http://dataservice.accuweather.com/currentconditions/v1/" + keyCiudad + "?apikey=" + KEY_API + Lenguaje.ESPAÃ‘OL;
 		try {
 			URL url = new URL(dirUrl);
 			try {
@@ -158,7 +162,7 @@ public class Clima {
 			
 	}
 	
-	private String parsearResultados(String jsonresult) {
+	public String parsearResultados(String jsonresult) {
 		JsonParser jParser = new JsonParser();
 		JsonElement jsonConResultados = jParser.parse(jsonresult);
 		String seleccion=null;

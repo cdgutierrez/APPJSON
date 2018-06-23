@@ -1,5 +1,5 @@
 package info;
 
 public class Lenguaje {
-	public static final String ESPAÑOL = "&language=es&details=true";
+	public static final String ESPAÃ‘OL = "&language=es&details=true";
 }
